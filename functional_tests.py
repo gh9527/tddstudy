@@ -19,7 +19,6 @@ class NewVistorTest(unittest.TestCase):
         self.assertIn('To-Do',self.brower.title)
         header_text = self.brower.find_element_by_tag_name('h1').text
         self.assertIn('To-Do',header_text)
-        self.fail('Finish the test')
         
         #应用邀请她输入一个代办事项
         inputbox = self.brower.find_element_by_id('id_new_item')
@@ -31,12 +30,13 @@ class NewVistorTest(unittest.TestCase):
         #她按回车键后，页面更新了
         #代办事向表显示了’1：buy peacock feather‘
         inputbox.send_keys('1：buy peacock feather')
-        inputbox.send_keys(keys.ENTER)
+        inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
         table = self.brower.find_element_by_id('id_list_table')
-        rows = table.find_element_by_tag_name('tr')
+        rows = table.find_elements_by_tag_name('tr')
         self.assertTrue(
-            any(row.text == '1：buy peacock feather' for row in rows)
+            any(row.text == '1：buy peacock feather' for row in rows),
+            'new to-do item did not appear in table'
         )
         #页面有显示了一个文本框，可以输入其他代办事项
         #她输入了’use peacock feathers to make a fly
