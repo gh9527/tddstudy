@@ -11,6 +11,11 @@ class NewVistorTest(unittest.TestCase):
     def tearDown(self):
         self.brower.quit()
 
+    def check_for_row_in_list_table(self,row_text):
+        table = self.brower.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn(row_text,[row.text for row in rows])
+
     def test_can_start_a_list_and_retrieve_it_later(self):
                 
         #访问网站首页
@@ -32,12 +37,14 @@ class NewVistorTest(unittest.TestCase):
         inputbox.send_keys('1：buy peacock feather')
         inputbox.send_keys(Keys.ENTER)
         time.sleep(3)
-        table = self.brower.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn('1：buy peacock feather',[row.text for row in rows])
-        self.assertIn('2：use peacock feathers to make a fly',[row.text for row in rows])
+        self.check_for_row_in_list_table('1：buy peacock feather')
         #页面有显示了一个文本框，可以输入其他代办事项
         #她输入了’use peacock feathers to make a fly
+        inputbox = self.brower.find_element_by_id('id_new_item')
+        inputbox.send_keys('use peacock feathers to make a fly')
+        inputbox.send_keys(Keys.ENTER)
+        self.check_for_row_in_list_table('1：buy peacock feather')
+        self.check_for_row_in_list_table('use peacock feathers to make a fly')
         self.fail('finish test')
         #页面再次更新
         #网站为她生成唯一url
