@@ -8,13 +8,9 @@
         </form>
 
         <table id="id_list_table">
-            <tr>
-                <td>{{ new_item_text }}</td>
-                <td></td>
-            </tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
+            {% for item in items %}
+                <tr><td>{{item.text}}</td></tr>
+            {% endfor %}
         </table>
     </body>
 </html>
