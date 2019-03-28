@@ -31,13 +31,11 @@ class NewVistorTest(unittest.TestCase):
         #代办事向表显示了’1：buy peacock feather‘
         inputbox.send_keys('1：buy peacock feather')
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(1)
+        time.sleep(3)
         table = self.brower.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == '1：buy peacock feather' for row in rows),
-            'new to-do item did not appear in table'
-        )
+        self.assertIn('1：buy peacock feather',[row.text for row in rows])
+        self.assertIn('2：use peacock feathers to make a fly',[row.text for row in rows])
         #页面有显示了一个文本框，可以输入其他代办事项
         #她输入了’use peacock feathers to make a fly
         self.fail('finish test')
