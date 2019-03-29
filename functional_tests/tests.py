@@ -89,9 +89,7 @@ class NewVistorTest(LiveServerTestCase):
 		#francis获得了她的唯一url
 		francis_list_url = self.brower.current_url
 		self.assertRegex(francis_list_url,'/list/.+')
-		self.assertEqual(francis_list_url,edith_list_url)
-
-
+		self.assertNotEqual(francis_list_url,edith_list_url)
 
 		self.fail('finish test')
 		#页面再次更新
