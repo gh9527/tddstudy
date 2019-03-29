@@ -4,11 +4,11 @@ from selenium.common.exceptions import WebDriverException
 import time
 from django.test import LiveServerTestCase
 
-MAX_WAIT = 10
+MAX_WAIT = 3
 class NewVistorTest(LiveServerTestCase):
 
 	def setUp(self):
-		self.brower = webdriver.Chrome()
+		self.brower = webdriver.Firefox()
 
 	def tearDown(self):
 		self.brower.quit()
