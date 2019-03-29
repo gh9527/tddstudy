@@ -2,7 +2,7 @@
     <title>To-Do list</title>
     <body>
         <h1>start a new To-Do list</h1>
-        <form method="POST" action="/">
+        <form method="POST" action="/list/new">
             <input name="item_text" id="id_new_item" placeholder="enter a to-do item" type="text">
             {% csrf_token %}
         </form>
