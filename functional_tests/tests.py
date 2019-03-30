@@ -91,6 +91,19 @@ class NewVistorTest(LiveServerTestCase):
 		self.assertRegex(francis_list_url,'/list/.+')
 		self.assertNotEqual(francis_list_url,edith_list_url)
 
-		self.fail('finish test')
-		#页面再次更新
-		#网站为她生成唯一url
+
+	def test_layout_and_stying(self):
+		#伊利斯访问首页
+		self.brower.get(self.live_server_url)
+		self.brower.set_window_size(1024,768)
+		#她看到输入框完美居中显示 
+		inputbox = self.brower.find_element_by_id('id_new_item')
+		self.assertAlmostEqual(
+			inputbox.location['x'] + inputbox.size['width'] / 2,
+			512,
+			delta=10
+		)
+
+	self.fail('finish test')
+	#页面再次更新
+	#网站为她生成唯一url
