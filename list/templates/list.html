@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
-{% block headertext %}
-Your To-Do list
-{% endblock headertext %}
-{% block form_action %}
-/list/{{ list.id}}/add_item
-{% endblock form_action %}
+{% load staticfiles %}
+{% block header_text %}Your To-Do list{% endblock header_text %}
+{% block form_action %}/list/{{ list.id}}/add_item{% endblock form_action %}
 {% block table %}
-<table id="id_list_table">
+<table id="id_list_table" class="table">
     {% for item in list.item_set.all %}
-    <tr><td>{{ forloop.counter }}: {{ item.text }}</item></td></tr>
+    <tr><td>{{ item.text }}</item></td></tr>
+    {% endfor %}
 </table>
 {% endblock table %}

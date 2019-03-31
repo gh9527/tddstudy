@@ -3,9 +3,10 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException
 import time
 from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 MAX_WAIT = 3
-class NewVistorTest(LiveServerTestCase):
+class NewVistorTest(StaticLiveServerTestCase):
 
 	def setUp(self):
 		self.brower = webdriver.Firefox()
@@ -104,6 +105,6 @@ class NewVistorTest(LiveServerTestCase):
 			delta=10
 		)
 
-	self.fail('finish test')
+		self.fail('finish test')
 	#页面再次更新
 	#网站为她生成唯一url
